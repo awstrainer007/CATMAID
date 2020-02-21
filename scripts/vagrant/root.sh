@@ -13,23 +13,20 @@ wget --quiet -O - ${PG_KEY_URL} | sudo apt-key add -
 
 add-apt-repository ppa:deadsnakes/ppa
 add-apt-repository ppa:ubuntugis/ppa
-
 # necessary for git 2.8's user.useConfigOnly option
 add-apt-repository ppa:git-core/ppa
+
+# node PPA
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 
+# R PPA
+echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" >> /etc/apt/sources.list
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+
+apt-key update
 apt-get update
 
 cd /CATMAID
 sudo xargs apt-get install -y < packagelist-ubuntu-16.04-apt.txt
-apt-get install -y nodejs python3-pip python3.6-venv python3-wheel git
-
-# if it is not already,
-# prepend line to pg_hba.conf
-# and restart postgres
-#HBA_LINE="local catmaid catmaid_user md5"
-#HBA_PATH="/etc/postgresql/11/main/pg_hba.conf"
-#grep "$HBA_LINE" $HBA_PATH \
-#    || (echo "$HBA_LINE" && cat $HBA_PATH) > $HBA_PATH \
-#    && service postgresql restart
+apt-get install -y nodejs python3-pip python3.6-venv python3-wheel git r-base
 

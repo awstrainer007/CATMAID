@@ -10,11 +10,17 @@ echo "source ~/catmaid-env/bin/activate" >> ~/.bashrc
 # install python dependencies
 cd /CATMAID/django
 pip install -U pip
-pip install -r requirements-dev.txt
+pip install -r requirements-dev.txt -r requirements-optional.txt
+# useful additional packages
+pip install ipython pgcli
 
 # install node dependencies
 cd /CATMAID
 npm install
+
+# set up R library
+mkdir -p $(Rscript -e "cat(Sys.getenv(\"R_LIBS_USER\"))")
+# TODO: install R packages? but slows down the build a LOT
 
 # set up gitignore
 mkdir -p ~/.config/git
