@@ -54,6 +54,8 @@ pip-selfcheck.json
 # node
 node_modules/
 
+# environment
+.vagrant/
 " >> ~/.config/git/ignore
 
 git config --global user.useConfigOnly true
