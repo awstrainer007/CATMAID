@@ -14,13 +14,15 @@ wget --quiet -O - ${PG_KEY_URL} | sudo apt-key add -
 add-apt-repository ppa:deadsnakes/ppa
 add-apt-repository ppa:ubuntugis/ppa
 
+# necessary for git 2.8's user.useConfigOnly option
+add-apt-repository ppa:git-core/ppa
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 
 apt-get update
 
 cd /CATMAID
 sudo xargs apt-get install -y < packagelist-ubuntu-16.04-apt.txt
-apt-get install -y nodejs python3-pip python3.6-venv python3-wheel
+apt-get install -y nodejs python3-pip python3.6-venv python3-wheel git
 
 # if it is not already,
 # prepend line to pg_hba.conf
