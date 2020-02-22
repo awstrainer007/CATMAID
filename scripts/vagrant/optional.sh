@@ -75,4 +75,3 @@ cd projects
 echo "\n\nCreating CATMAID superuser account\n"
 ./manage.py createsuperuser
 ./manage.py catmaid_insert_example_projects --user=1
-

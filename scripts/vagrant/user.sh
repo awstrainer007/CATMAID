@@ -18,9 +18,9 @@ pip install ipython pgcli
 cd /CATMAID
 npm install
 
-# set up R library
-mkdir -p $(Rscript -e "cat(Sys.getenv(\"R_LIBS_USER\"))")
-# TODO: install R packages? but slows down the build a LOT
+# set up R library (without the eval, tilde is not expanded)
+mkdir -p $(eval echo $(Rscript -e "cat(Sys.getenv(\"R_LIBS_USER\"))"))
+# TODO: install R packages? Very slow
 
 # set up gitignore
 mkdir -p ~/.config/git
