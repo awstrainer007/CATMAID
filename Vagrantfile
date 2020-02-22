@@ -18,4 +18,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :shell, path: "scripts/vagrant/root.sh"
   config.vm.provision :shell, privileged: false, path: "scripts/vagrant/user.sh"
+
+  tz_name = `timedatectl | grep "Time zone" | awk '{print $3}'`.strip
+  config.vm.provision :shell, privileged: false, :inline => "echo \"#{tz_name}\" > ~/timezone"
 end
