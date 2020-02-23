@@ -12,8 +12,8 @@ end
 Vagrant.configure("2") do |config|
   config.vm.box = "generic/ubuntu1604"
   config.vm.synced_folder "./", "/CATMAID"
-  config.vm.network "forwarded_port", guest: 8000, host: 8888
-  config.vm.network "forwarded_port", guest: 5432, host: 5555
+  config.vm.network "forwarded_port", guest: 8000, host: 8888, host_ip: "127.0.0.1"
+  config.vm.network "forwarded_port", guest: 5432, host: 5555, host_ip: "127.0.0.1"
   config.vm.network "private_network", type: "dhcp"
 
   config.vm.provision :shell, path: "scripts/vagrant/root.sh"
